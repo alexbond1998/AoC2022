@@ -15,7 +15,7 @@ def Traverse(treenode, directory):
             if(treenode.children[i].name == directory):
                 return treenode.children[i]
         
-        print("No child found.. wtf?")
+        print("No child found...")
         exit()
 
 def loadFileSystem(input):
@@ -31,9 +31,6 @@ def loadFileSystem(input):
             if(cmd[1] == "cd"):
                 currentNode = Traverse(currentNode, cmd[2])
                 continue
-            else:
-                continue
-
         elif(cmd[0] == "dir"):
             currentNode.children.append(Node(cmd[1], 0, "dir", currentNode))
         else:
@@ -45,21 +42,18 @@ def UpdateSizes(itr, dir_sizes): #Post-Order Traversal
     if(itr == None):
         return dir_sizes
 
-    for i in range(len(itr.children)):
-        dir_sizes = UpdateSizes(itr.children[i], dir_sizes)
-    
     size = 0
 
     for i in range(len(itr.children)):
-        size = size + itr.children[i].size
-
+        dir_sizes = UpdateSizes(itr.children[i], dir_sizes)
+        size = size + itr.children[i].size 
+        
     if(itr.filetype == 'dir'):
         itr.size = size
         
         if(size <= 100000):
             dir_sizes.append(size)    
     
-
     return dir_sizes
 
 def FindSmallestRequiredDirectory(itr, dir_sizes, minimum_size): #Pre-Order Traversal
