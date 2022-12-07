@@ -1,4 +1,4 @@
-input = open('Dec4thInput.txt').read().split('\n')
+input = open('4thDecInput.txt').read().split('\n')
 sum = 0
 
 for i in range(len(input)):
