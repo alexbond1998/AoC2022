@@ -82,12 +82,10 @@ filesystem_min = 30000000
 
 root = loadFileSystem(input)
 
-sums = []
-sums = UpdateSizes(root, sums)
-
-
 
 #Part 1
+sums = []
+sums = UpdateSizes(root, sums)
 sorted_sums = sorted(sums)
 print("Part 1 Solution: " + str(sum(sorted_sums)))
 
